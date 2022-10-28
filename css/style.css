@@ -1,0 +1,138 @@
+:root {
+	--textColor: rgb(238, 232, 232);
+}
+body {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	background-color: #333;
+	background-image: url('../img/black-1072366_1920.jpg');
+	background-size: cover;
+	background-position: center;
+	color: var(--textColor);
+	font-family: 'Alegreya', serif;
+}
+.hero {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.header {
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	border-bottom: 1px solid #333;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.header .logo {
+	margin-top: 8px;
+	margin-left: 20px;
+	padding: 20px 10px;
+	font-size: 52px;
+	font-family: 'Mrs Saint Delafield', cursive;
+}
+
+.header .header__btns button {
+	margin-right: 20px;
+	padding: 10px 20px;
+	background: transparent;
+	color: var(--textColor);
+	border: 1px solid #333;
+	border-radius: 4px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: border 0.3s, background-color 0.3s;
+}
+
+.header__btns i {
+	font-size: 24px;
+	color: var(--textColor);
+}
+.header__btns button:hover,
+.header__btns button:focus {
+	border: 1px solid white;
+	background-color: rgba(255, 255, 255, 0.03);
+}
+
+.create-note-window {
+	position: absolute;
+	width: 80vw;
+	max-width: 600px;
+	min-width: 310px;
+	max-height: 65vh;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgb(29, 28, 28);
+	text-align: left;
+	border: 1px solid #333;
+	border-radius: 3px;
+	box-shadow: 0 0 15px black;
+}
+#note-title,
+#note-text {
+	margin: 10px auto;
+	padding: 5px;
+	min-width: 95%;
+	max-width: 95%;
+	outline: none;
+	border-radius: 3px;
+	background-color: var(--textColor);
+}
+#note-text {
+	min-height: 100px;
+}
+
+.create-note-window .footer {
+	width: 95%;
+	margin: 10px auto;
+	display: flex;
+	justify-content: space-between;
+}
+.create-note-btns {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.create-note-btns button {
+	height: 30px;
+	width: 65px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+    font-size: 24px;
+	cursor: pointer;
+    transition: border .3s;
+    background-color: rgba(245, 153, 153,.5);
+}
+
+#create-ok {
+	background-color: rgba(103, 180, 103, .5);
+}
+
+.create-note-btns button:hover,
+.create-note-btns button:focus {
+	border-color: rgba(255,255,255,0.5);
+}
+
+#pick-color {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: transparent;
+	border: 1px solid transparent;
+	cursor: pointer;
+}

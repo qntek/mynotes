@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;600&family=Mrs+Saint+Delafield&display=swap"
+        rel="stylesheet">
+    <!-- tabler icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- JS -->
+    <script src="./js/script.js" defer></script>
+    <title>My Notes</title>
+</head>
+<body>
+    <div class="hero">
+        <header class="header">
+            <div class="logo">
+                <p>My Notes...</p>
+            </div>
+            <div class="header__btns">
+                <button id="createNote"><i class="ti ti-file-plus"></i></button>
+            </div>
+        </header>
+
+        <div class="create-note-window">
+            <input type="text" id="note-title" placeholder="Tytuł">
+            <textarea id="note-text"></textarea>
+            <div class="footer">
+                <div class="create-note-btns">
+                    <button class="btn btn-ok" id="create-ok"><i class="ti ti-circle-check"></i></button>
+                    <button class="btn" id="create-reject"><i class="ti ti-ban"></i></button>
+                </div>
+                <div>
+                    <input type="color" id="pick-color" value="#f6b73c">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
