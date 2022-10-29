@@ -70,7 +70,7 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
@@ -79,6 +79,7 @@ body {
 	border: 1px solid #333;
 	border-radius: 3px;
 	box-shadow: 0 0 15px black;
+	z-index: 1000;
 }
 #note-title,
 #note-text {
@@ -135,4 +136,55 @@ body {
 	background-color: transparent;
 	border: 1px solid transparent;
 	cursor: pointer;
+}
+
+.note-window {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+    transform: translate(-50%, -50%);
+	width: 200px;
+	min-height: 120px;
+	max-height: 350px;
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+    justify-content: start;
+	align-items: start;
+	background-color: gold;
+	border: 1px solid black;
+	border-radius: 5px;
+	box-shadow: 0 0 10px black;
+	color: black;
+	font-size: 12px;
+}
+.note-header {
+	margin-bottom: 8px;
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14px;
+	font-weight: bold;
+	border-bottom: 1px solid #333;
+}
+.note-header div {
+	display: flex;
+	flex-wrap: nowrap;
+}
+.note-header .note-window-btn {
+	background: transparent;
+	border: 1px solid transparent;
+	padding: 4px;
+	cursor: pointer;
+}
+.note-header .note-window-btn i {
+	color: black;
+	text-shadow: 0 0 10px white;
+}
+.note-window-content {
+	padding-right: 5px;
+	overflow: auto;
+	scrollbar-color: transparent;
 }

@@ -13,11 +13,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
     <!-- css -->
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
     <!-- JS -->
-    <script src="./js/script.js" defer></script>
+    <script src="./js/script.js" type="module" defer></script>
     <title>My Notes</title>
 </head>
 <body>
@@ -32,8 +34,8 @@
         </header>
 
         <div class="create-note-window">
-            <input type="text" id="note-title" placeholder="Tytuł">
-            <textarea id="note-text"></textarea>
+            <input type="text" id="note-title" maxlength="30" placeholder="Tytuł">
+            <textarea id="note-text" maxlength="500"></textarea>
             <div class="footer">
                 <div class="create-note-btns">
                     <button class="btn btn-ok" id="create-ok"><i class="ti ti-circle-check"></i></button>
@@ -44,6 +46,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- <div class="note-window">
+            <div class="note-header">
+                <p id="note-window-title">Tytuł notatki</p>
+                <div>
+                    <button class="note-window-btn" id="edit-note"><i class="ti ti-pencil"></i></button>
+                    <button class="note-window-btn" id="delete-note"><i class="ti ti-trash"></i></button>
+                </div>
+
+            </div>
+            <div class="note-window-content" id="note-window-content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ratione enim maxime fuga impedit hic
+                error accusantium reiciendis, odit inventore repellat tenetur! Sint, facere debitis! Ex, amet? Ex, nulla
+                facilis.
+            </div>
+        </div> -->
 
     </div>
 </body>
