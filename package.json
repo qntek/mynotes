@@ -1,0 +1,11 @@
+{
+  "name": "mynotes",
+  "version": "1.0.0",
+  "description": "place to create and menage with a cards with short notes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomasz Kuncio",
+  "license": "ISC"
+}

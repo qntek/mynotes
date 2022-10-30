@@ -3,7 +3,7 @@ import { Note } from '../js/note.js';
 const createNote = document.getElementById('createNote');
 const createReject = document.getElementById('create-reject');
 const confirmCreateNote = document.getElementById('create-ok');
-const listOfNotes = [];
+export const listOfNotes = [];
 
 function openCreateNoteWindow() {
 	const createNoteWindow = document.querySelector('.create-note-window');
@@ -27,5 +27,4 @@ function createNewNote() {
 createNote.addEventListener('click', openCreateNoteWindow);
 createReject.addEventListener('click', closeCreateNoteWindow);
 confirmCreateNote.addEventListener('click', createNewNote);
-
 
