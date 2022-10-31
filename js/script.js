@@ -33,6 +33,7 @@ window.addEventListener('resize', () => {
 	listOfNotes.forEach((object) => object.windowResizeHandler());
 });
 editNoteReject.addEventListener('click', () => {
-	const editWindow = document.querySelector('.edit-note-window')
+	const editWindow = document.querySelector('.edit-note-window');
+	editWindow.querySelector('button').remove();
 	editWindow.style.display = 'none';
 });
