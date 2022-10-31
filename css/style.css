@@ -1,6 +1,7 @@
 :root {
 	--textColor: rgb(238, 232, 232);
 }
+
 body {
 	position: relative;
 	width: 100vw;
@@ -14,8 +15,9 @@ body {
 	overflow: hidden;
 }
 .hero {
-	width: 100%;
+	display: block;
 	height: 100%;
+	width: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
 	overflow: hidden;
 }
@@ -113,19 +115,19 @@ body {
 	width: 65px;
 	border: 1px solid transparent;
 	border-radius: 3px;
-    font-size: 24px;
+	font-size: 24px;
 	cursor: pointer;
-    transition: border .3s;
-    background-color: rgba(245, 153, 153,.5);
+	transition: border 0.3s;
+	background-color: rgba(245, 153, 153, 0.5);
 }
 
 #create-ok {
-	background-color: rgba(103, 180, 103, .5);
+	background-color: rgba(103, 180, 103, 0.5);
 }
 
 .create-note-btns button:hover,
 .create-note-btns button:focus {
-	border-color: rgba(255,255,255,0.5);
+	border-color: rgba(255, 255, 255, 0.5);
 }
 
 #pick-color {
@@ -142,16 +144,16 @@ body {
 
 .note-window {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-    /* transform: translate(-50%, -50%); */
+	top: 85px;
+	left: 10px;
+	/* transform: translate(-50%, -50%); */
 	width: 200px;
 	min-height: 120px;
 	max-height: 350px;
 	padding: 8px;
 	display: flex;
 	flex-direction: column;
-    justify-content: start;
+	justify-content: start;
 	align-items: start;
 	background-color: gold;
 	border: 1px solid black;

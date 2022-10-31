@@ -27,3 +27,6 @@ function createNewNote() {
 createNote.addEventListener('click', openCreateNoteWindow);
 createReject.addEventListener('click', closeCreateNoteWindow);
 confirmCreateNote.addEventListener('click', createNewNote);
+window.addEventListener('resize', () => {
+	listOfNotes.forEach(object => object.windowResizeHandler());
+});

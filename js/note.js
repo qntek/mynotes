@@ -5,8 +5,10 @@ export class Note {
 		this.title = document.querySelector('#note-title').value;
 		this.content = document.querySelector('#note-text').value;
 		this.color = document.querySelector('#pick-color').value;
-		this.x = null;
+		this.x = null; // position on screen after drag drop.
 		this.y = null;
+		this.xProp = null; // will be used to keep position on thee screen when window will resize.
+		this.yProp = null;
 		this.zIndex = ++zIndex;
 		this.noteWindow = document.createElement('div');
 	}
@@ -30,8 +32,8 @@ export class Note {
                 <pre>${this.content}</pre>
             </div>
         `;
-		document.body.appendChild(this.noteWindow);
-
+		// document.body.appendChild(this.noteWindow);
+		document.getElementById('drop').appendChild(this.noteWindow);
 		this.deleteNoteListener();
 		this.dragDropListener();
 	}
@@ -47,8 +49,6 @@ export class Note {
 
 	dragDropListener() {
 		//deltaX and deltaY are used to calculate the position of the mouse pointer on the element when dragged. Final coords when moved are used for left top corner of moved element.
-		this.deltaX = 0;
-		this.deltaY = 0;
 		this.noteWindow.addEventListener('dragstart', (e) => {
 			e.dataTransfer.setData('text/plain', this);
 			this.deltaX = e.pageX - this.noteWindow.offsetLeft;
@@ -60,15 +60,46 @@ export class Note {
 			zIndex > 1000 ? (zIndex = 0) : zIndex++;
 			this.noteWindow.style.zIndex = this.zIndex;
 		});
+		this.noteWindow.addEventListener('touchstart', (e) => {
+			this.deltaX = e.changedTouches[0].clientX - this.noteWindow.offsetLeft;
+			this.deltaY = e.changedTouches[0].clientY - this.noteWindow.offsetTop;
+		});
+		this.noteWindow.addEventListener('touchend', (e) => {
+			this.changeNotePosMobiles(e, this.deltaX, this.deltaY);
+			this.zIndex = zIndex + 1;
+			zIndex > 1000 ? (zIndex = 0) : zIndex++;
+			this.noteWindow.style.zIndex = this.zIndex;
+		});
 	}
 
 	changeNotePos(e, deltaX, deltaY) {
 		this.x = e.pageX - deltaX;
+		this.y = e.pageY - deltaY;
+		this.positionChange();
+
+		this.xProp = this.x / window.innerWidth;
+		this.yProp = this.y / window.innerHeight;
+	}
+	changeNotePosMobiles(e, deltaX, deltaY) {
+		this.x = e.changedTouches[0].clientX - deltaX;
+		this.y = e.changedTouches[0].clientY - deltaY;
+		this.positionChange();
+
+		this.xProp = this.x / window.innerWidth;
+		this.yProp = this.y / window.innerHeight;
+	}
+	windowResizeHandler() {
+		// keeps note on proportional position during resizing
+		this.x = window.innerWidth * this.xProp;
+		this.y = window.innerHeight * this.yProp;
+		this.positionChange();
+	}
+	positionChange() {
+		// keeps note inside viewport
 		if (this.x < 5) this.x = 5;
 		if (this.x > window.innerWidth - this.noteWindow.scrollWidth) {
 			this.x = window.innerWidth - this.noteWindow.scrollWidth - 5;
 		}
-		this.y = e.pageY - deltaY;
 		if (this.y < 85) this.y = 85;
 		if (this.y > window.innerHeight - this.noteWindow.scrollHeight) {
 			this.y = window.innerHeight - this.noteWindow.scrollHeight - 5;
