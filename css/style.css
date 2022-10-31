@@ -33,6 +33,7 @@ body {
 	height: 80px;
 	border-bottom: 1px solid #333;
 	background-color: rgba(0, 0, 0, 0.3);
+	user-select: none;
 }
 
 .header .logo {
@@ -65,7 +66,8 @@ body {
 	background-color: rgba(255, 255, 255, 0.03);
 }
 
-.create-note-window {
+.create-note-window,
+.edit-note-window {
 	position: absolute;
 	width: 80vw;
 	max-width: 600px;
@@ -86,7 +88,9 @@ body {
 	z-index: 1000;
 }
 #note-title,
-#note-text {
+#note-text,
+#edit-note-text,
+#edit-note-title {
 	margin: 10px auto;
 	padding: 5px;
 	min-width: 95%;
@@ -95,22 +99,26 @@ body {
 	border-radius: 3px;
 	background-color: var(--textColor);
 }
-#note-text {
+#note-text,
+#edit-note-text {
 	min-height: 100px;
 }
 
-.create-note-window .footer {
+.create-note-window .footer,
+.edit-note-window .edit-footer {
 	width: 95%;
 	margin: 10px auto;
 	display: flex;
 	justify-content: space-between;
 }
-.create-note-btns {
+.create-note-btns,
+.edit-note-btns {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 }
-.create-note-btns button {
+.create-note-btns button,
+.edit-note-btns button {
 	height: 30px;
 	width: 65px;
 	border: 1px solid transparent;
@@ -121,7 +129,8 @@ body {
 	background-color: rgba(245, 153, 153, 0.5);
 }
 
-#create-ok {
+#create-ok,
+#edit-ok {
 	background-color: rgba(103, 180, 103, 0.5);
 }
 
@@ -130,7 +139,8 @@ body {
 	border-color: rgba(255, 255, 255, 0.5);
 }
 
-#pick-color {
+#pick-color,
+#edit-pick-color {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -187,8 +197,16 @@ body {
 	color: black;
 	text-shadow: 0 0 10px white;
 }
+
 .note-window-content {
 	padding-right: 5px;
 	overflow: auto;
 	scrollbar-color: transparent;
+	font-family: 'Alegreya', serif;
+}
+.note-window-content p {
+	padding-right: 5px;
+	overflow: auto;
+	scrollbar-color: transparent;
+	font-family: 'Alegreya', serif;
 }

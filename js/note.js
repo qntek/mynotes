@@ -19,6 +19,14 @@ export class Note {
 		this.noteWindow.style.top = `${this.y}px`;
 		this.noteWindow.style.left = `${this.x}px`;
 		this.noteWindow.style.zIndex = this.zIndex;
+		this.noteInnerHTML();
+		// document.body.appendChild(this.noteWindow);
+		document.getElementById('drop').appendChild(this.noteWindow);
+		this.deleteNoteListener();
+		this.dragDropListener();
+		this.editNoteListener();
+	}
+	noteInnerHTML() {
 		this.noteWindow.innerHTML = `
         <div class="note-header">
                 <p id="note-window-title">${this.title}</p>
@@ -29,21 +37,17 @@ export class Note {
 
             </div>
             <div class="note-window-content" id="note-window-content">
-                <pre>${this.content}</pre>
+                <p>${this.content}</p>
             </div>
         `;
-		// document.body.appendChild(this.noteWindow);
-		document.getElementById('drop').appendChild(this.noteWindow);
-		this.deleteNoteListener();
-		this.dragDropListener();
 	}
-
 	deleteNoteListener() {
 		const deleteBtn = this.noteWindow.querySelector('#delete-note');
 		deleteBtn.addEventListener('click', (e) => {
 			e.target.closest('.note-window').remove();
 			const inxof = listOfNotes.indexOf(this);
 			listOfNotes.splice(inxof, 1);
+			if (listOfNotes.length === 0) zIndex = 5;
 		});
 	}
 
@@ -106,5 +110,35 @@ export class Note {
 		}
 		this.noteWindow.style.top = `${this.y}px`;
 		this.noteWindow.style.left = `${this.x}px`;
+	}
+	editNoteListener() {
+		const editNoteWindow = document.querySelector('.edit-note-window');
+		const editNoteBtns = editNoteWindow.querySelector('.edit-note-btns');
+		this.editBtn = this.noteWindow.querySelector('#edit-note');
+		this.editBtn.addEventListener('click', () => {
+			this.editConfirmBtn = document.createElement('button');
+			this.editConfirmBtn.setAttribute('class', 'btn btn-ok');
+			this.editConfirmBtn.setAttribute('id', 'edit-ok');
+			this.editConfirmBtn.innerHTML = '<i class="ti ti-circle-check"></i>';
+			editNoteBtns.prepend(this.editConfirmBtn);
+			editNoteWindow.style.display = 'flex';
+			editNoteWindow.querySelector('#edit-note-title').value = this.title;
+			editNoteWindow.querySelector('#edit-note-text').value = this.content;
+			editNoteWindow.querySelector('#edit-pick-color').value = this.color;
+			const editConfirmBtn = editNoteWindow.querySelector('#edit-ok');
+		editConfirmBtn.addEventListener('click', () => {
+			this.title = editNoteWindow.querySelector('#edit-note-title').value;
+			this.content = editNoteWindow.querySelector('#edit-note-text').value;
+			this.color = editNoteWindow.querySelector('#edit-pick-color').value;
+			this.noteWindow.querySelector('#note-window-title').textContent =
+				this.title;
+			this.noteWindow.querySelector('#note-window-content').textContent =
+				this.content;
+			this.noteWindow.style.backgroundColor = this.color;
+			editNoteWindow.style.display = 'none';
+			this.editConfirmBtn.remove();
+		});
+		});
+		
 	}
 }
