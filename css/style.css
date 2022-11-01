@@ -171,6 +171,11 @@ body {
 	box-shadow: 0 0 10px black;
 	color: black;
 	font-size: 12px;
+	transition: transform .3s;
+}
+.note-window:focus,
+.note-window:hover {
+	transform: scale(1.05);
 }
 .note-header {
 	margin-bottom: 8px;
