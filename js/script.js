@@ -44,7 +44,6 @@ function createNewNote() {
 	noteToAdd.putNoteIntoDom();
 	closeCreateNoteWindow();
 	window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
-	// console.log('listOfNotes:', listOfNotes);
 }
 
 // Loading localStorage.
