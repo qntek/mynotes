@@ -10,9 +10,10 @@ export class Note {
 		this.xProp = null; // will be used to keep position on thee screen when window will resize.
 		this.yProp = null;
 		this.zIndex = ++zIndex;
-		this.noteWindow = document.createElement('div');
+		this.noteWindow = '';
 	}
 	putNoteIntoDom() {
+		this.noteWindow = document.createElement('div')
 		this.noteWindow.className = 'note-window';
 		this.noteWindow.setAttribute('draggable', 'true');
 		this.noteWindow.style.backgroundColor = this.color;
@@ -37,7 +38,7 @@ export class Note {
 
             </div>
             <div class="note-window-content" id="note-window-content">
-                <p>${this.content}</p>
+                <pre>${this.content}</pre>
             </div>
         `;
 	}
@@ -48,6 +49,7 @@ export class Note {
 			const inxof = listOfNotes.indexOf(this);
 			listOfNotes.splice(inxof, 1);
 			if (listOfNotes.length === 0) zIndex = 5;
+			window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
 		});
 	}
 
@@ -63,6 +65,7 @@ export class Note {
 			this.zIndex = zIndex + 1;
 			zIndex > 1000 ? (zIndex = 0) : zIndex++;
 			this.noteWindow.style.zIndex = this.zIndex;
+			window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
 		});
 		this.noteWindow.addEventListener('touchstart', (e) => {
 			this.deltaX = e.changedTouches[0].clientX - this.noteWindow.offsetLeft;
@@ -73,6 +76,7 @@ export class Note {
 			this.zIndex = zIndex + 1;
 			zIndex > 1000 ? (zIndex = 0) : zIndex++;
 			this.noteWindow.style.zIndex = this.zIndex;
+			window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
 		});
 	}
 
@@ -110,12 +114,14 @@ export class Note {
 		}
 		this.noteWindow.style.top = `${this.y}px`;
 		this.noteWindow.style.left = `${this.x}px`;
+		window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
 	}
 	editNoteListener() {
 		const editNoteWindow = document.querySelector('.edit-note-window');
 		const editNoteBtns = editNoteWindow.querySelector('.edit-note-btns');
 		this.editBtn = this.noteWindow.querySelector('#edit-note');
 		this.editBtn.addEventListener('click', () => {
+			//to avoid editing all notes, confirmation button is being created by object that is being edited in current moment. When confirmed, button is removed from DOM.
 			this.editConfirmBtn = document.createElement('button');
 			this.editConfirmBtn.setAttribute('class', 'btn btn-ok');
 			this.editConfirmBtn.setAttribute('id', 'edit-ok');
@@ -126,19 +132,19 @@ export class Note {
 			editNoteWindow.querySelector('#edit-note-text').value = this.content;
 			editNoteWindow.querySelector('#edit-pick-color').value = this.color;
 			const editConfirmBtn = editNoteWindow.querySelector('#edit-ok');
-		editConfirmBtn.addEventListener('click', () => {
-			this.title = editNoteWindow.querySelector('#edit-note-title').value;
-			this.content = editNoteWindow.querySelector('#edit-note-text').value;
-			this.color = editNoteWindow.querySelector('#edit-pick-color').value;
-			this.noteWindow.querySelector('#note-window-title').textContent =
-				this.title;
-			this.noteWindow.querySelector('#note-window-content').textContent =
-				this.content;
-			this.noteWindow.style.backgroundColor = this.color;
-			editNoteWindow.style.display = 'none';
-			this.editConfirmBtn.remove();
+			editConfirmBtn.addEventListener('click', () => {
+				this.title = editNoteWindow.querySelector('#edit-note-title').value;
+				this.content = editNoteWindow.querySelector('#edit-note-text').value;
+				this.color = editNoteWindow.querySelector('#edit-pick-color').value;
+				this.noteWindow.querySelector('#note-window-title').textContent =
+					this.title;
+				this.noteWindow.querySelector('#note-window-content').textContent =
+					this.content;
+				this.noteWindow.style.backgroundColor = this.color;
+				editNoteWindow.style.display = 'none';
+				this.editConfirmBtn.remove(); // remove created confirm button witch his listener.
+				window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
+			});
 		});
-		});
-		
 	}
 }

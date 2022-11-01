@@ -199,12 +199,17 @@ body {
 }
 
 .note-window-content {
+	display: flex;
+	flex-wrap: wrap;
 	padding-right: 5px;
 	overflow: auto;
 	scrollbar-color: transparent;
 	font-family: 'Alegreya', serif;
 }
-.note-window-content p {
+.note-window-content pre {
+	display: inline;
+	white-space: pre-line;
+	width: 100%;
 	padding-right: 5px;
 	overflow: auto;
 	scrollbar-color: transparent;
