@@ -20,7 +20,8 @@ function loadNotesFromLocalStorage() {
 	if (listOfNotes.length > 0) {
 		for (let note of listOfNotes) {
 			note.putNoteIntoDom();
-			note.positionChange();
+			if (note.x !== null && note.y !== null) note.positionChange();
+			
 		}
 	}
 }
@@ -28,6 +29,7 @@ function loadNotesFromLocalStorage() {
 function openCreateNoteWindow() {
 	const createNoteWindow = document.querySelector('.create-note-window');
 	const editNoteWindow = document.querySelector('.edit-note-window');
+	document.querySelector('#pick-color').value = randomColor();
 	editNoteWindow.style.display = 'none';
 	createNoteWindow.style.display = 'flex';
 }
@@ -36,7 +38,7 @@ function closeCreateNoteWindow() {
 	createNoteWindow.style.display = 'none';
 	document.querySelector('#note-title').value = '';
 	document.querySelector('#note-text').value = '';
-	document.querySelector('#pick-color').value = '#f6b73c';
+	
 }
 function createNewNote() {
 	const noteToAdd = new Note();
@@ -44,6 +46,10 @@ function createNewNote() {
 	noteToAdd.putNoteIntoDom();
 	closeCreateNoteWindow();
 	window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
+}
+
+function randomColor() {
+	return `#${Math.floor(Math.random()*16777215).toString(16)}`;
 }
 
 // Loading localStorage.

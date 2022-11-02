@@ -17,15 +17,10 @@ export class Note {
 		this.noteWindow.className = 'note-window';
 		this.noteWindow.setAttribute('draggable', 'true');
 		this.noteWindow.style.backgroundColor = this.color;
-		this.setRandomPositionOnScreen();
-
 		this.noteWindow.style.zIndex = this.zIndex;
 		this.noteInnerHTML();
-		// document.body.appendChild(this.noteWindow);
 		document.getElementById('drop').appendChild(this.noteWindow);
-		this.positionChange();
-		this.xProp = this.x / window.innerWidth;
-		this.yProp = this.y / window.innerHeight;
+		if (this.x !== null && this.y !== null) this.setAbsolutePositionOnScreen();
 		this.deleteNoteListener();
 		this.dragDropListener();
 		this.editNoteListener();
@@ -68,6 +63,8 @@ export class Note {
 			this.zIndex = zIndex + 1;
 			zIndex > 1000 ? (zIndex = 0) : zIndex++;
 			this.noteWindow.style.zIndex = this.zIndex;
+			this.setAbsolutePositionOnScreen();
+
 			window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
 		});
 		this.noteWindow.addEventListener('touchstart', (e) => {
@@ -79,6 +76,7 @@ export class Note {
 			this.zIndex = zIndex + 1;
 			zIndex > 1000 ? (zIndex = 0) : zIndex++;
 			this.noteWindow.style.zIndex = this.zIndex;
+			this.setAbsolutePositionOnScreen();
 			window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
 		});
 	}
@@ -100,10 +98,12 @@ export class Note {
 		this.yProp = this.y / window.innerHeight;
 	}
 	windowResizeHandler() {
-		// keeps note on proportional position during resizing
-		this.x = window.innerWidth * this.xProp;
-		this.y = window.innerHeight * this.yProp;
-		this.positionChange();
+		if (this.x !== null && this.y !== null) {
+			// keeps note on proportional position during resizing
+			this.x = window.innerWidth * this.xProp;
+			this.y = window.innerHeight * this.yProp;
+			this.positionChange();
+		}
 	}
 	positionChange() {
 		// keeps note inside viewport
@@ -151,13 +151,7 @@ export class Note {
 		});
 	}
 
-	setRandomPositionOnScreen() {
-		if (this.x == null && this.y == null) {
-			this.x = Math.floor(Math.random() * (window.innerWidth * 0.75))
-			this.y = Math.floor(
-				Math.random() * window.innerHeight * 0.75
-					
-			);
-		}
+	setAbsolutePositionOnScreen() {
+		this.noteWindow.classList.add('position-absolute');
 	}
 }
