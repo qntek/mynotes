@@ -1,6 +1,7 @@
 import { Note } from '../js/note.js';
 
 const createNote = document.getElementById('createNote');
+const lineNotes = document.getElementById('line-notes');
 const createReject = document.getElementById('create-reject');
 const confirmCreateNote = document.getElementById('create-ok');
 const editNoteReject = document.getElementById('edit-reject');
@@ -21,7 +22,6 @@ function loadNotesFromLocalStorage() {
 		for (let note of listOfNotes) {
 			note.putNoteIntoDom();
 			if (note.x !== null && note.y !== null) note.positionChange();
-			
 		}
 	}
 }
@@ -38,7 +38,6 @@ function closeCreateNoteWindow() {
 	createNoteWindow.style.display = 'none';
 	document.querySelector('#note-title').value = '';
 	document.querySelector('#note-text').value = '';
-	
 }
 function createNewNote() {
 	const noteToAdd = new Note();
@@ -49,7 +48,16 @@ function createNewNote() {
 }
 
 function randomColor() {
-	return `#${Math.floor(Math.random()*16777215).toString(16)}`;
+	return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
+
+function lineNotesAgain() {
+	listOfNotes.forEach((note) => {
+		note.noteWindow.classList.remove('position-absolute');
+		note.x = null;
+		note.y = null;
+	});
+	window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
 }
 
 // Loading localStorage.
@@ -71,4 +79,4 @@ editNoteReject.addEventListener('click', () => {
 	editWindow.style.display = 'none';
 });
 
-
+lineNotes.addEventListener('click', lineNotesAgain);

@@ -17,7 +17,7 @@ body {
 .hero {
 	display: flex;
 	justify-content: flex-start;
-	align-items: start;
+	align-items: center;
 	align-content: flex-start;
 	flex-wrap: wrap;
 	gap: 5px;
@@ -218,7 +218,7 @@ body {
 	font-family: 'Alegreya', serif;
 }
 .note-window-content pre {
-	display: inline;
+	/* display: inline; */
 	white-space: pre-line;
 	width: 100%;
 	padding-right: 5px;
