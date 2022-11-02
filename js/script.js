@@ -47,7 +47,6 @@ function createNewNote() {
 }
 
 // Loading localStorage.
-console.log('listOfNotes:', listOfNotes);
 loadLocalStoredNotes();
 loadNotesFromLocalStorage();
 

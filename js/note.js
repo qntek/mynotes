@@ -13,16 +13,19 @@ export class Note {
 		this.noteWindow = '';
 	}
 	putNoteIntoDom() {
-		this.noteWindow = document.createElement('div')
+		this.noteWindow = document.createElement('div');
 		this.noteWindow.className = 'note-window';
 		this.noteWindow.setAttribute('draggable', 'true');
 		this.noteWindow.style.backgroundColor = this.color;
-		this.noteWindow.style.top = `${this.y}px`;
-		this.noteWindow.style.left = `${this.x}px`;
+		this.setRandomPositionOnScreen();
+
 		this.noteWindow.style.zIndex = this.zIndex;
 		this.noteInnerHTML();
 		// document.body.appendChild(this.noteWindow);
 		document.getElementById('drop').appendChild(this.noteWindow);
+		this.positionChange();
+		this.xProp = this.x / window.innerWidth;
+		this.yProp = this.y / window.innerHeight;
 		this.deleteNoteListener();
 		this.dragDropListener();
 		this.editNoteListener();
@@ -146,5 +149,15 @@ export class Note {
 				window.localStorage.setItem('notes', JSON.stringify(listOfNotes));
 			});
 		});
+	}
+
+	setRandomPositionOnScreen() {
+		if (this.x == null && this.y == null) {
+			this.x = Math.floor(Math.random() * (window.innerWidth * 0.75))
+			this.y = Math.floor(
+				Math.random() * window.innerHeight * 0.75
+					
+			);
+		}
 	}
 }
