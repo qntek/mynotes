@@ -20,7 +20,7 @@ body {
 	align-items: center;
 	align-content: flex-start;
 	flex-wrap: wrap;
-	gap: 5px;
+	gap: 8px;
 	height: 100%;
 	width: 100%;
 	padding-top: 85px;
@@ -50,7 +50,11 @@ body {
 	font-size: 52px;
 	font-family: 'Mrs Saint Delafield', cursive;
 }
-
+.header .header__btns {
+	display: flex;
+	gap: 1px;
+	margin-right: 3px;
+}
 .header .header__btns button {
 	margin-right: 20px;
 	padding: 10px 20px;
@@ -148,19 +152,24 @@ body {
 
 #pick-color,
 #edit-pick-color {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
 	background-color: transparent;
 	border: 1px solid transparent;
 	cursor: pointer;
 }
+#pick-color::-webkit-color-swatch,
+#pick-color::-webkit-color-swatch-wrapper,
+#edit-pick-color::-webkit-color-swatch,
+#edit-pick-color::-webkit-color-swatch-wrapper {
+	border: 1px solid transparent;
+	border-radius: 15px;
+	padding: 0;
+}
 
 .note-window {
-	width: 200px;
+	width: 220px;
 	min-height: 120px;
 	max-height: 350px;
 	padding: 8px;
@@ -173,7 +182,7 @@ body {
 	border-radius: 5px;
 	box-shadow: 0 0 10px black;
 	color: black;
-	font-size: 12px;
+	font-size: 14px;
 	transition: transform 0.15s ease-out;
 }
 .note-window:focus,
@@ -190,7 +199,7 @@ body {
 	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: center;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
 	border-bottom: 1px solid #333;
 }
@@ -211,6 +220,7 @@ body {
 
 .note-window-content {
 	display: flex;
+	width: 100%;
 	flex-wrap: wrap;
 	padding-right: 5px;
 	overflow: auto;
@@ -218,11 +228,74 @@ body {
 	font-family: 'Alegreya', serif;
 }
 .note-window-content pre {
-	/* display: inline; */
 	white-space: pre-line;
 	width: 100%;
 	padding-right: 5px;
 	overflow: auto;
 	scrollbar-color: transparent;
 	font-family: 'Alegreya', serif;
+}
+
+@media (max-width: 450px) {
+	.hero {
+		gap: 3px;
+	}
+	.header .logo {
+		font-size: 48px;
+	}
+	.header .header__btns {
+		margin-right: 3px;
+	}
+	.header .header__btns button {
+		margin-right: 15px;
+		padding: 10px 20px;
+	}
+	.note-window {
+		width: 195px;
+	}
+}
+@media (max-width: 400px) {
+	.hero {
+		gap: 5px;
+		padding-left: 5px;
+	}
+	.header .logo {
+		margin-top: 8px;
+		margin-left: 10px;
+		padding: 10px 5px;
+		font-size: 40px;
+	}
+	.header .header__btns {
+		margin-right: 1px;
+	}
+	.header .header__btns button {
+		margin-right: 12px;
+		padding: 8px 16px;
+	}
+	.note-window {
+		width: 170px;
+		padding: 5px;
+	}
+
+	.note-header {
+		margin-bottom: 7px;
+		font-size: 14px;
+	}
+}
+@media (max-width: 325px) {
+	.hero {
+		gap: 3px;
+		padding-top: 85px;
+		padding-left: 3px;
+	}
+	.note-window {
+		width: 155px;
+		min-height: 100px;
+		max-height: 200px;
+		font-size: 12px;
+	}
+	.note-header {
+		margin-bottom: 7px;
+		font-size: 12px;
+	}
 }

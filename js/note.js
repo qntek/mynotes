@@ -141,8 +141,7 @@ export class Note {
 				this.color = editNoteWindow.querySelector('#edit-pick-color').value;
 				this.noteWindow.querySelector('#note-window-title').textContent =
 					this.title;
-				this.noteWindow.querySelector('#note-window-content').textContent =
-					this.content;
+				this.noteWindow.querySelector('pre').textContent = this.content;
 				this.noteWindow.style.backgroundColor = this.color;
 				editNoteWindow.style.display = 'none';
 				this.editConfirmBtn.remove(); // remove created confirm button witch his listener.
