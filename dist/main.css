@@ -1,0 +1,331 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+html,
+body {
+	height: 100%;
+}
+html {
+	scroll-behavior: smooth;
+	font-size: 62.5%;
+}
+a {
+	text-decoration: none;
+}
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
+}
+
+:root {
+	--textColor: rgb(238, 232, 232);
+}
+
+body {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	background-color: #333;
+	background-image: url(images/black-1072366_1920.jpg);
+	background-size: cover;
+	background-position: center;
+	color: var(--textColor);
+	font-family: 'Alegreya', serif;
+	overflow: hidden;
+}
+.hero {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: flex-start;
+	flex-wrap: wrap;
+	gap: 8px;
+	height: 100%;
+	width: 100%;
+	padding-top: 85px;
+	padding-left: 5px;
+	background-color: rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+}
+
+.header {
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	border-bottom: 1px solid #333;
+	background-color: rgba(0, 0, 0, 0.3);
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+}
+
+.header .logo {
+	margin-top: 8px;
+	margin-left: 20px;
+	padding: 20px 10px;
+	font-size: 52px;
+	font-family: 'Mrs Saint Delafield', cursive;
+}
+.header .header__btns {
+	display: flex;
+	gap: 1px;
+	margin-right: 3px;
+}
+.header .header__btns button {
+	margin-right: 20px;
+	padding: 10px 20px;
+	background: transparent;
+	color: var(--textColor);
+	border: 1px solid #333;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: border 0.3s, background-color 0.3s;
+}
+
+.header__btns i {
+	font-size: 24px;
+	color: var(--textColor);
+}
+.header__btns button:hover,
+.header__btns button:focus {
+	border: 1px solid white;
+	background-color: rgba(255, 255, 255, 0.03);
+	outline: none;
+}
+
+.create-note-window,
+.edit-note-window {
+	position: absolute;
+	width: 80vw;
+	max-width: 600px;
+	min-width: 310px;
+	max-height: 65vh;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgb(29, 28, 28);
+	text-align: left;
+	border: 1px solid #333;
+	border-radius: 3px;
+	box-shadow: 0 0 15px black;
+	z-index: 1000;
+}
+#note-title,
+#note-text,
+#edit-note-text,
+#edit-note-title {
+	margin: 10px auto;
+	padding: 5px;
+	min-width: 95%;
+	max-width: 95%;
+	outline: none;
+	border-radius: 3px;
+	background-color: var(--textColor);
+}
+#note-text,
+#edit-note-text {
+	min-height: 100px;
+}
+
+.create-note-window .footer,
+.edit-note-window .edit-footer {
+	width: 95%;
+	margin: 10px auto;
+	display: flex;
+	justify-content: space-between;
+}
+.create-note-btns,
+.edit-note-btns {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.create-note-btns button,
+.edit-note-btns button {
+	height: 30px;
+	width: 65px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	font-size: 24px;
+	cursor: pointer;
+	transition: border 0.3s;
+	background-color: rgba(245, 153, 153, 0.5);
+}
+
+#create-ok,
+#edit-ok {
+	background-color: rgba(103, 180, 103, 0.5);
+}
+
+.create-note-btns button:hover,
+.create-note-btns button:focus {
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+#pick-color,
+#edit-pick-color {
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	background-color: transparent;
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+#pick-color::-webkit-color-swatch,
+#pick-color::-webkit-color-swatch-wrapper,
+#edit-pick-color::-webkit-color-swatch,
+#edit-pick-color::-webkit-color-swatch-wrapper {
+	border: 1px solid transparent;
+	border-radius: 15px;
+	padding: 0;
+}
+
+.note-window {
+	width: 220px;
+	min-height: 120px;
+	max-height: 350px;
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	background-color: gold;
+	border: 1px solid black;
+	border-radius: 5px;
+	box-shadow: 0 0 10px black;
+	color: black;
+	font-size: 14px;
+	transition: transform 0.15s ease-out;
+}
+.note-window:focus,
+.note-window:hover {
+	transform: scale(1.01);
+}
+.position-absolute {
+	position: absolute;
+}
+.note-header {
+	margin-bottom: 8px;
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: 1px solid #333;
+}
+.note-header div {
+	display: flex;
+	flex-wrap: nowrap;
+}
+.note-header .note-window-btn {
+	background: transparent;
+	border: 1px solid transparent;
+	padding: 4px;
+	cursor: pointer;
+}
+.note-header .note-window-btn i {
+	color: black;
+	text-shadow: 0 0 10px white;
+}
+
+.note-window-content {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	padding-right: 5px;
+	overflow: auto;
+	scrollbar-color: transparent;
+	font-family: 'Alegreya', serif;
+}
+.note-window-content pre {
+	white-space: pre-line;
+	width: 100%;
+	padding-right: 5px;
+	overflow: auto;
+	scrollbar-color: transparent;
+	font-family: 'Alegreya', serif;
+}
+
+@media (max-width: 450px) {
+	.hero {
+		gap: 3px;
+	}
+	.header .logo {
+		font-size: 48px;
+	}
+	.header .header__btns {
+		margin-right: 3px;
+	}
+	.header .header__btns button {
+		margin-right: 15px;
+		padding: 10px 20px;
+	}
+	.note-window {
+		width: 195px;
+	}
+}
+@media (max-width: 400px) {
+	.hero {
+		gap: 5px;
+		padding-left: 5px;
+	}
+	.header .logo {
+		margin-top: 8px;
+		margin-left: 10px;
+		padding: 10px 5px;
+		font-size: 40px;
+	}
+	.header .header__btns {
+		margin-right: 1px;
+	}
+	.header .header__btns button {
+		margin-right: 12px;
+		padding: 8px 16px;
+	}
+	.note-window {
+		width: 170px;
+		padding: 5px;
+	}
+
+	.note-header {
+		margin-bottom: 7px;
+		font-size: 14px;
+	}
+}
+@media (max-width: 325px) {
+	.hero {
+		gap: 3px;
+		padding-top: 85px;
+		padding-left: 3px;
+	}
+	.note-window {
+		width: 155px;
+		min-height: 100px;
+		max-height: 200px;
+		font-size: 12px;
+	}
+	.note-header {
+		margin-bottom: 7px;
+		font-size: 12px;
+	}
+}
+
+
+/*# sourceMappingURL=main.css.map*/

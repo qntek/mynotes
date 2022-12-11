@@ -1,4 +1,6 @@
-import { Note } from '../js/note.js';
+import { Note } from './note.js';
+import '../css/reset.css';
+import '../css/style.css';
 
 const createNote = document.getElementById('createNote');
 const lineNotes = document.getElementById('line-notes');
